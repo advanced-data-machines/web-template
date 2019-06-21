@@ -71,7 +71,7 @@ using VueCliMiddleware
 
 Your __Development__ environment will look as follows:
 
-<img src="https://github.com/adm-devs/web-template/blob/master/images/image1.png" alt="dev environment" />
+<img width="500" src="https://github.com/adm-devs/web-template/blob/master/images/image8.png" alt="vscode extensions" />
 
 Requests will come in on _http://localhost:5000_
 The aspnetcore project will process it the target is a MVC or API controller it will be handled
@@ -82,4 +82,97 @@ This will allow you to utilize the hot-module-replacement and debug the client s
 For __Production__, npm will process the application in the 'clientapp' folder, compiling it to static js, css, etc files putting them in the wwwroot directory where kestrel will serve them as required.
 
 
-<img src="https://github.com/adm-devs/web-template/blob/master/images/image8.png" alt="vscode extensions" />
+## Editing the Client-Side Project with VSCode
+
+### 1. Add Required VSCode Extensions
+
+Find the 'Extensions Panel'.
+
+<img width="250" src="https://github.com/adm-devs/web-template/blob/master/images/image1.png" alt="vscode extensions" />
+
+Search for 'Vetur' in the search box and install.
+
+<img width="600" src="https://github.com/adm-devs/web-template/blob/master/images/image3.png" alt="vetur" />
+
+This will add support for _.vue_ files in VSCode.
+
+Then search for the 'ESLint' plugin and install.
+
+<img width="600" src="https://github.com/adm-devs/web-template/blob/master/images/image4.png" alt="eslint" />
+
+This will add support for providing visual feedback on linting and auto-fixing problems on file save.
+
+### 2. Update VSCode settings
+
+Make the following changes to your VSCode settings to allow ESLint to fix formatting issues.
+
+* Locate the settings section in File > Preferences > Settings Or type Ctrl+
+* Click the curly brackets button in the top right of VS Code window
+
+<img width="400" src="https://github.com/adm-devs/web-template/blob/master/images/image6.png" alt="VSCode Settings" />
+
+* Modify existing settings to appear as follows
+
+```JSON
+{
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "editor.tabSize": 4,
+    "editor.insertSpaces": false,
+    "eslint.validate": [
+        {
+            "language": "vue",
+            "autoFix": true
+        },
+        {
+            "language": "javascript",
+            "autoFix": true
+        },
+        {
+            "language": "javascriptreact",
+            "autoFix": true
+        }
+    ],
+    "eslint.autoFixOnSave": true,
+    "editor.formatOnSave": false,
+    "vetur.validation.template": false
+}
+```
+
+The formatting settings specified in 'eslintrd.js' will now be enforced
+
+### 3. Setup .eslintrc.js File
+
+* Locate the file loacted in the 'clientapp' directory
+* Modify the file to appear as follows:
+
+```Javascript
+module.exports = {
+    root: true,
+    env: {
+        node: true
+    },
+    extends: [
+        'eslint:recommended',
+        'plugin:vue/strongly-recommended',
+        '@vue/prettier'
+    ],
+    rules: {
+        'prettier/prettier': [
+            'error',
+            {
+                singleQuote: true,
+                useTabs: true,
+                tabsWidth: 4
+            }
+        ],
+        'vue/component-name-in-template-casing': ['error', 'PascalCase'],
+        'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+        'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+        'vue/max_attributes-per-line': 'off'
+    },
+    parserOptions: {
+        parser: 'babel-eslint'
+    }
+};
+```
+
