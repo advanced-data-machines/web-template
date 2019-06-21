@@ -24,7 +24,7 @@ $ dotnet add package VueCliMiddleware
 $ vue ui
 ```
 
-> where '<ProjectName>' is the name of the directory to put the project in
+> where '<ProjectName\>' is the name of the directory to put the project in
 
 In the vue ui, do the following:
 
