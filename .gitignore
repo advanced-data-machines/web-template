@@ -1,0 +1,16 @@
+# Sample .gitignore file for the web-template
+
+
+# build directories
+bin
+obj
+
+# npm directories
+.DS_Store
+node_modules
+wwwroot
+package-lock.json
+
+# Editor directories and files
+.vs
+*.suo
