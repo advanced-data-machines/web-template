@@ -12,7 +12,7 @@ Guide for creating a aspnet core web project integrated with vue-cli
 
 ### Create the AspNetCore Project
 
-_The following instructions will work both in Windows or a linux desktop but using the windows remove directory command where you would have to replace with the linux command_
+_The following instructions will work both in Windows, Mac or a linux desktop. This example uses the windows remove directory command, for other O/S use the appropriate command_
 
 Open a command prompt in the target directory and run the following:
 
@@ -24,7 +24,7 @@ $ dotnet add package VueCliMiddleware
 $ vue ui
 ```
 
-> where <ProjectName> is the name of the directory to put the project in
+> where '<ProjectName>' is the name of the directory to put the project in
 
 In the vue ui, do the following:
 
@@ -74,10 +74,10 @@ Your __Development__ environment will look as follows:
 <img width="500" src="https://github.com/adm-devs/web-template/blob/master/images/image8.png" alt="vscode extensions" />
 
 Requests will come in on _http://localhost:5000_
-The aspnetcore project will process it the target is a MVC or API controller it will be handled
-Otherwise, the request will be proxied to _http://localhost:8080_ for node to handle running the Vue project
+The aspnetcore project will process it, if the target is a MVC or API controller.
+Otherwise, the request will be proxied to _http://localhost:8080_ for node to handle with the running the Vue project.
 
-This will allow you to utilize the hot-module-replacement and debug the client side project correctly.
+This will allow you to utilize the hot-module-replacement feature and debug the client side project correctly.
 
 For __Production__, npm will process the application in the 'clientapp' folder, compiling it to static js, css, etc files putting them in the wwwroot directory where kestrel will serve them as required.
 
