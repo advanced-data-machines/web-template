@@ -109,7 +109,7 @@ Make the following changes to your VSCode settings to allow ESLint to fix format
 * Locate the settings section in File > Preferences > Settings Or type Ctrl+
 * Click the curly brackets button in the top right of VS Code window
 
-<img width="400" src="https://github.com/adm-devs/web-template/blob/master/images/image6.png" alt="VSCode Settings" />
+<img width="600" src="https://github.com/adm-devs/web-template/blob/master/images/image6.png" alt="VSCode Settings" />
 
 * Modify existing settings to appear as follows
 
@@ -142,7 +142,7 @@ The formatting settings specified in 'eslintrd.js' will now be enforced
 
 ### 3. Setup .eslintrc.js File
 
-* Locate the file loacted in the 'clientapp' directory
+* Locate the file located in the 'clientapp' directory
 * Modify the file to appear as follows:
 
 ```Javascript
@@ -176,3 +176,81 @@ module.exports = {
 };
 ```
 
+
+## Debugging the Client-Side Project with VSCode
+
+### Edit vue.config.js File
+
+* Locate the file located in the 'clientapp' directory
+* Modify the file to appear as follows:
+
+```Javascript
+module.exports = {
+    // output production files to the aspnetcore project directory 'wwwroot'
+    outputDir: '../wwwroot',
+    configureWebpack: {
+        // Using source-map allows VS Code to correctly debug inside vue files but not during production
+        devtool: process.env.NODE_ENV === 'production' ? false : 'source-map',
+        // Breakpoints in VS and VSCode won’t work unless you adjust where it can find the source files
+        output: {
+            devtoolModuleFilenameTemplate: info => {
+                const resourcePath = info.resourcePath.replace(
+                    './src',
+                    './ClientApp/src'
+                );
+                return `webpack:///${resourcePath}?${info.loaders}`;
+            }
+        }
+    }
+};
+```
+
+### Add required VSCode extension
+
+Search for and install 'Debugger for Chrome'
+
+<img width="600" src="https://github.com/adm-devs/web-template/blob/master/images/image2.png" alt="Chrome debugger" />
+
+This will allow you to set a specific launch target for Chrome in the VSCode debugger
+
+### Create a Launch Target
+
+Click on the debug icon on the left toolbar and then click on the configure icon
+
+<img src="https://github.com/adm-devs/web-template/blob/master/images/image9.png" alt="Debug config" />
+
+Edit launch.json to look like the following
+
+```JSON
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Launch Chrome (vue)",
+            "url": "http://localhost:8080",
+            "webRoot": "${workspaceFolder}/src",
+            "breakOnLoad": true
+        }
+    ]
+}
+```
+
+> The 'webroot' property depend on wich folder is the root folder in VSCode
+> if VSCode is opened in the <ProjectName>/clientapp directory then:
+>   "webRoot": "${workspaceFolder}/src"
+> else if VSCode is opened in the <ProjectName> directory then:
+>   "webRoot": "${workspaceFolder}/clientapp/src"
+
+### Debugging the project
+
+1.  Run the project in Visual Studio
+2.  Wait until the project comes up and the webpage appears
+3.  In VSCode click 'Run' in the debug panel
+
+<img src="https://github.com/adm-devs/web-template/blob/master/images/image5.png" alt="VSCode debug" />
+
+4.  You can now set breakpoints in your vue files
+
+<img src="https://github.com/adm-devs/web-template/blob/master/images/image7.png" alt="VSCode breakpoint" />
