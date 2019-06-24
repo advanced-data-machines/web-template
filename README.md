@@ -254,3 +254,5 @@ Edit launch.json to look like the following
 4.  You can now set breakpoints in your vue files
 
 <img src="https://github.com/adm-devs/web-template/blob/master/images/image7.png" alt="VSCode breakpoint" />
+
+5. All the c#, MVC, server side code can have breakpoints and debugging done via Visual Studio as normal
