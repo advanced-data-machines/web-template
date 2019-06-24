@@ -47,7 +47,7 @@ In the vue ui, do the following:
     b)  Set ‘Select config’ to ‘Strongly recommended’
 14. Click ‘Save Changes’
 
-Now open the project <ProjectName>.csproj in Visual Studio (or VSCode if you prefer)
+Now open the project <ProjectName\>.csproj in Visual Studio (or VSCode if you prefer)
 
 Open 'Startup.cs' and make the following edits:
 
@@ -57,13 +57,13 @@ configuration.RootPath = "wwwroot";
 ```
 2.  Around line 52 in the 'Configure' method change the line with 'UseReactDevelopmentServer' to
 ```
-spa.UseVliCli("serve", 8080);
+spa.UseVueCli("serve", 8080);
 ```
 3.  Make sure you add the import:
 ```
 using VueCliMiddleware
 ```
-4.  On the top toolbar in visual studio where the debugging context is set to 'IIS Express', click the dropdown and select <ProjectName> instead. This will run the project under kestrel as it will run in production rather than under IIS
+4.  On the top toolbar in visual studio where the debugging context is set to 'IIS Express', click the dropdown and select <ProjectName\> instead. This will run the project under kestrel as it will run in production rather than under IIS
 5.  In the solution explorer, right-click on the project and click 'Add / New Folder' and name it 'wwwroot'
 6.  Click 'Save All' and save the solution file
 
@@ -238,9 +238,9 @@ Edit launch.json to look like the following
 ```
 
 > The 'webroot' property depend on wich folder is the root folder in VSCode
-> if VSCode is opened in the <ProjectName>/clientapp directory then:
+> if VSCode is opened in the <ProjectName\>/clientapp directory then:
 >   "webRoot": "${workspaceFolder}/src"
-> else if VSCode is opened in the <ProjectName> directory then:
+> else if VSCode is opened in the <ProjectName\> directory then:
 >   "webRoot": "${workspaceFolder}/clientapp/src"
 
 ### Debugging the project
