@@ -8,7 +8,7 @@ Guide for creating a aspnet core web project integrated with vue-cli
 * Visual Studio 2017+
 * .NET Core SDK 2.2.x
 * Microsoft.AspNetCore 2.2.x
-* Vue cli 3.x
+* Vue cli 4.x
 
 ### Create the AspNetCore Project
 
@@ -34,7 +34,7 @@ In the vue ui, do the following:
 4.  Make the folder name ‘clientapp’, untick ‘Initialize git repo’, then click ‘Next’
 5.  Select ‘Manual’ preset
 6.  Tick, Babel, Router, Vuex, CSS Pre-processors, Linter / Formatter and Use config files. Then click ‘Next’
-7.  Untick history mode, Select ‘node-sass’ and ‘ESLint + Prettier’
+7.  Untick history mode, Select ‘node-sass’ and ‘ESLint + Standard config’
 8.  Tick ‘Lint on save’, then click ‘Create Project’
 9.  Save your settings to ‘Default Project’
 10. When the project is created and the page switches to the Project Dashboard
@@ -148,31 +148,39 @@ The formatting settings specified in 'eslintrd.js' will now be enforced
 ```Javascript
 module.exports = {
     root: true,
-    env: {
-        node: true
-    },
-    extends: [
-        'eslint:recommended',
-        'plugin:vue/strongly-recommended',
-        '@vue/prettier'
-    ],
-    rules: {
-        'prettier/prettier': [
-            'error',
-            {
-                singleQuote: true,
-                useTabs: true,
-                tabsWidth: 4
-            }
-        ],
-        'vue/component-name-in-template-casing': ['error', 'PascalCase'],
-        'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-        'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-        'vue/max_attributes-per-line': 'off'
-    },
-    parserOptions: {
-        parser: 'babel-eslint'
-    }
+	env: {
+		node: true
+	},
+	extends: [
+		'plugin:vue/strongly-recommended',
+		'@vue/standard'
+	],
+	rules: {
+		'no-var': 2,
+		'indent': ['error', 'tab'],
+		'no-tabs': 0,
+		'semi': [
+			'error',
+			'always'
+		],
+		'quotes': [
+			'error',
+			'single'
+		],
+		"space-before-function-paren": ["error", "never"],
+		'no-console': 'off',
+		'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+		'vue/component-name-in-template-casing': ['error', 'PascalCase'],
+		'vue/html-indent': [
+			'error',
+			'tab'
+		],
+		'vue/max-attributes-per-line': 'off',
+		'vue/singleline-html-element-content-newline': 'off'
+	},
+	parserOptions: {
+		parser: 'babel-eslint'
+	}
 };
 ```
 
